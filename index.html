@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiniRack · Comparador de mini PC, NAS y firewall para tu homelab</title>
+<meta name="description" content="Elige el hardware para tu homelab: compara mini PC, NAS, firewalls y Raspberry Pi por CPU, RAM, discos y red, según lo que quieras montar (Proxmox, Docker, Home Assistant, Plex, OPNsense).">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guia-mini-pc-proxmox.html">Guía: mini PC para Proxmox</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
+<main class="wrap">
+  <section class="hero">
+    <h1>El hardware justo para tu <span class="mono">homelab</span></h1>
+    <p>Dinos qué quieres montar y te marcamos los equipos que lo aguantan. Compara CPU, RAM, discos y red lado a lado, sin humo.</p>
+  </section>
+
+  <section class="box">
+    <strong>1. ¿Qué quieres montar?</strong> <span style="color:var(--mute);font-size:14px">(elige uno o varios)</span>
+    <div class="chips" id="usos"></div>
+    <strong>2. ¿Cuántos discos de datos?</strong>
+    <div class="chips" id="discos"></div>
+  </section>
+
+  <div class="bar">
+    <select id="cat"><option value="">Todas las categorías</option><option>Mini PC</option><option>NAS</option><option>Firewall</option><option>Placa</option></select>
+    <select id="orden"><option value="match">Mejor encaje primero</option><option value="ram">Más RAM máxima</option><option value="lan">Red más rápida</option><option value="bahias">Más bahías</option></select>
+    <button class="btn p" id="go" disabled>Comparar (0)</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div id="cmp"></div>
+
+  <p class="note" style="margin-top:28px">Sin precios a propósito: cambian cada día y en Amazon los verás actualizados. Las especificaciones son las del fabricante; si ves un error, avísanos.</p>
+</main>
+<footer><div class="wrap">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. · <a href="aviso-legal.html">Aviso legal y privacidad</a> · Esta web no usa cookies propias.</div></footer>
+
+<script src="data.js"></script>
+<script>
+const P=window.PRODUCTOS,U=window.USOS,$=id=>document.getElementById(id);
+const st={usos:new Set(),discos:0,sel:new Set()};
+const link=p=>p.link||`https://www.amazon.es/s?k=${encodeURIComponent(p.buscar)}&tag=${window.TAG}`;
+
+// Asistente
+$('usos').innerHTML=Object.entries(U).map(([k,v])=>`<button class="chip" data-u="${k}">${v}</button>`).join('');
+$('discos').innerHTML=[[0,'Ninguno / me da igual'],[1,'1'],[2,'2'],[4,'4 o más']].map(([n,t])=>`<button class="chip${n===0?' on':''}" data-d="${n}">${t}</button>`).join('');
+document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{const u=b.dataset.u;st.usos.has(u)?st.usos.delete(u):st.usos.add(u);b.classList.toggle('on');draw()});
+document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-d]').forEach(x=>x.classList.remove('on'));b.classList.add('on');st.discos=+b.dataset.d;draw()});
+
+function encaje(p){ // 0..100: cuántos de los usos elegidos cubre y si caben los discos
+  let s=st.usos.size?[...st.usos].filter(u=>p.usos.includes(u)).length/st.usos.size*100:50;
+  const huecos=p.bahias+p.m2;
+  if(st.discos && huecos<st.discos) s-=60;
+  if(st.discos>=2 && p.bahias>=st.discos) s+=15;
+  return Math.max(0,Math.min(100,Math.round(s)));
+}
+function draw(){
+  let L=P.filter(p=>!$('cat').value||p.cat===$('cat').value).map(p=>({...p,e:encaje(p)}));
+  const o=$('orden').value;
+  L.sort((a,b)=>o==='ram'?b.ramMax-a.ramMax:o==='lan'?(b.lanMax*b.nLan)-(a.lanMax*a.nLan):o==='bahias'?b.bahias-a.bahias:b.e-a.e);
+  const filtro=st.usos.size>0;
+  $('count').textContent=filtro?`${L.filter(p=>p.e===100).length} cubren todo lo que pides`:`${L.length} equipos`;
+  $('grid').innerHTML=L.map(p=>`<div class="c${filtro&&p.e===100?' match':''}">
+    <span class="cat">${p.cat}${filtro?` · encaje ${p.e}%`:''}</span><h3>${p.nombre}</h3>
+    <div class="specs"><span>CPU</span>${p.cpu} (${p.nucleos})<span>RAM</span>${p.ram} · máx. ${p.ramMax} GB<span>Discos</span>${p.discos}<span>Red</span>${p.lan}</div>
+    <div class="tags">${p.usos.map(u=>`<i>${U[u].split(' (')[0]}</i>`).join('')}</div>
+    <p>${p.nota}</p>
+    <label><input type="checkbox" data-id="${p.id}" ${st.sel.has(p.id)?'checked':''}> Comparar</label>
+    <a class="buy" href="${link(p)}" rel="sponsored nofollow noopener" target="_blank">Ver precio en Amazon</a></div>`).join('');
+  document.querySelectorAll('[data-id]').forEach(c=>c.onchange=()=>{
+    if(c.checked){ if(st.sel.size>=4){c.checked=false;return} st.sel.add(c.dataset.id) } else st.sel.delete(c.dataset.id);
+    $('go').textContent=`Comparar (${st.sel.size})`;$('go').disabled=st.sel.size<2;});
+}
+$('go').onclick=()=>{
+  const S=P.filter(p=>st.sel.has(p.id));
+  const fila=(t,f,num,best)=>{const v=S.map(num||(()=>0)),m=best==='max'?Math.max(...v):null;
+    return `<tr><td>${t}</td>${S.map((p,i)=>`<td class="${m!==null&&v[i]===m?'best':''}">${f(p)}</td>`).join('')}</tr>`};
+  $('cmp').innerHTML=`<table><tr><th></th>${S.map(p=>`<th>${p.nombre}</th>`).join('')}</tr>
+   ${fila('CPU',p=>`${p.cpu}<br><small>${p.nucleos}</small>`)}
+   ${fila('RAM máxima',p=>`${p.ramMax} GB`,p=>p.ramMax,'max')}
+   ${fila('Bahías 3,5"/2,5"',p=>p.bahias,p=>p.bahias,'max')}
+   ${fila('Ranuras M.2',p=>p.m2,p=>p.m2,'max')}
+   ${fila('Red',p=>p.lan,p=>p.lanMax*p.nLan,'max')}
+   ${fila('Transcodifica (QuickSync)',p=>p.quicksync?'Sí':'No')}
+   ${fila('Proxmox (x86)',p=>p.x86?'Sí':'No')}
+   ${fila('Consumo',p=>p.consumo)}
+   <tr><td></td>${S.map(p=>`<td><a class="buy" style="display:block" href="${link(p)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></td>`).join('')}</tr></table>`;
+  $('cmp').scrollIntoView({behavior:'smooth'});
+};
+['cat','orden'].forEach(i=>$(i).onchange=draw);draw();
+</script>
+</body>
+</html>

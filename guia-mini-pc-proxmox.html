@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qué mini PC comprar para Proxmox en 2026 (guía sin humo) · MiniRack</title>
+<meta name="description" content="Cuánta RAM, qué CPU, cuántos discos y qué tarjeta de red necesita un mini PC para Proxmox. Tres perfiles: empezar, homelab serio y clúster.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guia-mini-pc-proxmox.html">Guía: mini PC para Proxmox</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
+<main class="wrap"><article>
+<section class="hero"><h1>Qué mini PC comprar para <span class="mono">Proxmox</span> en 2026</h1>
+<p>Lo que de verdad importa al elegir el equipo para tus máquinas virtuales, y tres perfiles según lo que quieras montar.</p></section>
+
+<h2>1. La RAM manda, no la CPU</h2>
+<p>En un homelab, la CPU pasa casi todo el día al 5 %. Lo que se acaba antes es la memoria: cada máquina virtual reserva la suya, y si usas ZFS, el sistema de archivos también se queda con un buen trozo. Por eso, antes de mirar núcleos, mira la <strong>RAM máxima</strong> que admite el equipo:</p>
+<ul>
+<li><strong>16 GB:</strong> Proxmox, un par de VM ligeras y unos cuantos contenedores LXC.</li>
+<li><strong>32–64 GB:</strong> varias VM (Windows, un controlador de dominio, laboratorios de ASIR) sin ir justo.</li>
+<li><strong>96 GB o más:</strong> clústeres, Kubernetes y laboratorios grandes.</li>
+</ul>
+<p>Ojo con los mini PC baratos con N100/N150: muchos tienen <strong>una sola ranura</strong> y se quedan en 16 GB para siempre.</p>
+
+<h2>2. Dos discos mejor que uno</h2>
+<p>Lo cómodo es un disco pequeño para el sistema y otro para las VM y las copias. Si el equipo solo tiene una ranura M.2, todo va al mismo disco, y si falla lo pierdes todo a la vez. Busca <strong>M.2 + SATA de 2,5"</strong> o <strong>dos M.2</strong>.</p>
+
+<h2>3. La tarjeta de red</h2>
+<p>Las tarjetas Intel (i219, i225/i226) suelen funcionar en Proxmox sin tocar nada. Con algunas Realtek de 2,5 GbE ha habido que instalar drivers a mano. Si vas a montar un router virtual con OPNsense, necesitas <strong>al menos dos puertos</strong>.</p>
+
+<h2>4. Virtualización activada</h2>
+<p>Comprueba en la BIOS que están VT-x y VT-d (en AMD, AMD-V e IOMMU). Sin VT-d no podrás pasar una tarjeta o un disco directamente a una VM, por ejemplo para TrueNAS.</p>
+
+<h2>Tres perfiles</h2>
+<h3>Para empezar: N100/N150 con 16 GB</h3>
+<p>Silenciosos y gastan poquísimo. Perfectos para Home Assistant, Pi-hole, un par de contenedores y aprender Proxmox. Mira el <a href="index.html">Beelink EQ14 o el S12 Pro en el comparador</a>.</p>
+<h3>Homelab serio: ThinkCentre M920q reacondicionado</h3>
+<p>Seis núcleos, hasta 64 GB, NIC Intel, M.2 + SATA y una ranura PCIe con riser. Reacondicionado sale barato, y es el más recomendado en los foros de homelab por algo.</p>
+<h3>Clúster o laboratorio grande: Minisforum MS-01</h3>
+<p>Hasta 96 GB de DDR5, tres M.2, dos puertos 10G SFP+ y PCIe. Caro, pero con tres de ellos montas un clúster Ceph de verdad.</p>
+
+<p class="note">Antes de comprar, abre el <a href="index.html">comparador</a>, marca «Máquinas virtuales (Proxmox)» y compara los que encajen.</p>
+</article></main>
+<footer><div class="wrap">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. · <a href="aviso-legal.html">Aviso legal y privacidad</a></div></footer>
+</body>
+</html>
