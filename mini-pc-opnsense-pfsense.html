@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mini PC para OPNsense o pfSense en 2026: qué necesitas de verdad · MiniRack</title>
+<meta name="description" content="Cuántos puertos, qué tarjeta de red, cuánta RAM y qué CPU necesita un mini PC para usarlo de router con OPNsense o pfSense en casa.">
+<link rel="canonical" href="https://juliogomhoc-png.github.io/minirack/mini-pc-opnsense-pfsense.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Mini PC para OPNsense o pfSense en 2026: qué necesitas de verdad">
+<meta property="og:description" content="Cuántos puertos, qué tarjeta de red, cuánta RAM y qué CPU necesita un mini PC para usarlo de router con OPNsense o pfSense en casa."><meta property="og:url" content="https://juliogomhoc-png.github.io/minirack/mini-pc-opnsense-pfsense.html">
+<meta property="og:locale" content="es_ES"><meta property="og:site_name" content="MiniRack">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Mini PC para OPNsense o pfSense en 2026: qué necesitas de verdad", "description": "Cuántos puertos, qué tarjeta de red, cuánta RAM y qué CPU necesita un mini PC para usarlo de router con OPNsense o pfSense en casa.", "inLanguage": "es-ES", "dateModified": "2026-11-22", "mainEntityOfPage": "https://juliogomhoc-png.github.io/minirack/mini-pc-opnsense-pfsense.html"}</script>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guias.html">Guías</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
+<main class="wrap"><article>
+<section class="hero"><h1>Mini PC para <span class="mono">OPNsense</span> o pfSense</h1>
+<p>Montarte tu propio router con OPNsense es de lo más útil que puedes hacer en un homelab: VLAN, VPN, bloqueo de anuncios y control total. Esto es lo que necesita el equipo.</p><p class="meta">Actualizado: noviembre de 2026 · Sin precios: cambian cada día, los verás al día en Amazon.</p></section>
+
+<h2>1. Puertos: mínimo dos, mejor cuatro</h2>
+<p>Un router necesita un puerto para internet (WAN) y otro para tu red (LAN). Con <strong>cuatro</strong> puedes separar una red de invitados, una DMZ o los cacharros domóticos sin depender solo de VLAN. Por eso los mini PC "de firewall" traen 4 o 6 puertos.</p>
+
+<h2>2. Tarjeta de red Intel</h2>
+<p>OPNsense y pfSense están basados en FreeBSD, y ahí las tarjetas <strong>Intel</strong> (i225-V, i226-V, i210) son las que mejor soporte tienen. Con Realtek puede funcionar, pero es donde más problemas se leen en los foros. Si dudas, Intel.</p>
+
+<h2>3. CPU y RAM</h2>
+<p>Para fibra de hasta 1 Gb, un <strong>Intel N100</strong> va sobrado, incluso con VPN WireGuard. Si vas a activar inspección de tráfico (Suricata o Zenarmor), aprovecha la potencia y pon <strong>16 GB</strong>; para un router normal, 8 GB son más que suficientes. Un SSD NVMe pequeño basta para el sistema.</p>
+
+<h2>4. Sin ventilador, pero con aire</h2>
+<p>Los modelos pasivos son silenciosos, pero se calientan: ponlos donde corra el aire, no dentro de un mueble cerrado.</p>
+
+<h2>Los que elegiríamos</h2>
+<div class="pick"><div><strong>Mini PC firewall N100 con 4× 2,5 GbE Intel i226</strong><p>El estándar para OPNsense en casa. Hay muchas marcas casi idénticas (CWWK, Topton…): mira que traiga i226-V.</p></div><a class="buy" href="https://www.amazon.es/s?k=mini%20pc%20firewall%20N100%204x%202.5G%20i226&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+<div class="pick"><div><strong>Beelink EQ14 (2× 2,5 GbE)</strong><p>Si te bastan dos puertos y quieres algo de marca conocida, que además sirve para Docker.</p></div><a class="buy" href="https://www.amazon.es/s?k=Beelink%20EQ14%20N150&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+<div class="pick"><div><strong>Minisforum MS-01</strong><p>Si prefieres virtualizar OPNsense dentro de Proxmox junto a todo lo demás: 4 puertos, dos de ellos 10G.</p></div><a class="buy" href="https://www.amazon.es/s?k=Minisforum%20MS-01&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+
+<h2>Lo que vas a necesitar además</h2>
+<ul>
+<li>Un <a href="https://www.amazon.es/s?k=switch%202.5G%20gestionable%20VLAN&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">switch gestionable con VLAN</a> si quieres separar redes por cable.</li>
+<li>Un <a href="https://www.amazon.es/s?k=punto%20de%20acceso%20wifi%206%20PoE%20techo&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">punto de acceso wifi en modo AP</a>, porque OPNsense no hace de wifi.</li>
+<li>Un par de <a href="https://www.amazon.es/s?k=memoria%20DDR5%20SODIMM%2016GB&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">módulos de RAM</a> y un <a href="https://www.amazon.es/s?k=SSD%20NVMe%20256GB&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">SSD NVMe pequeño</a> si compras el modelo "barebone".</li>
+</ul>
+
+<h2>Preguntas frecuentes</h2><details><summary>¿Puedo quitar el router de mi operadora?</summary><p>Depende de la operadora. Algunas instalan una ONT aparte y otras dejan poner su router en modo puente. Varias exigen etiquetar el tráfico con una VLAN concreta: búscala para la tuya antes de comprar.</p></details><details><summary>¿OPNsense o pfSense?</summary><p>Los dos hacen lo mismo en casa. OPNsense tiene una interfaz más moderna y actualizaciones más frecuentes; pfSense CE tiene más tutoriales antiguos. Cualquiera de los dos funciona en estos equipos.</p></details><details><summary>¿Puedo virtualizarlo en Proxmox?</summary><p>Sí, y es muy común. Necesitas al menos dos puertos físicos (o pasar la tarjeta a la VM). El inconveniente: si reinicias Proxmox, te quedas sin internet.</p></details>
+<p class="cta"><a class="btn-cta" href="index.html?u=firewall">Abrir el comparador con esto marcado →</a></p>
+<h2>Sigue leyendo</h2><ul class="rel"><li><a href="guia-mini-pc-proxmox.html">Qué mini PC comprar para Proxmox</a></li><li><a href="mejor-nas-plex-jellyfin.html">Mejor NAS para Plex y Jellyfin</a></li><li><a href="raspberry-pi-5-o-mini-pc-home-assistant.html">Raspberry Pi 5 o mini PC para Home Assistant</a></li><li><a href="synology-o-ugreen-nas.html">Synology o UGREEN: qué NAS comprar</a></li></ul>
+</article></main>
+<footer><div class="wrap">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. · <a href="aviso-legal.html">Aviso legal y privacidad</a> · Esta web no usa cookies propias.</div></footer>
+</body>
+</html>

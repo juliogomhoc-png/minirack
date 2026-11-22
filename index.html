@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MiniRack · Comparador de mini PC, NAS y firewall para tu homelab</title>
 <meta name="description" content="Elige el hardware para tu homelab: compara mini PC, NAS, firewalls y Raspberry Pi por CPU, RAM, discos y red, según lo que quieras montar (Proxmox, Docker, Home Assistant, Plex, OPNsense).">
+<link rel="canonical" href="https://juliogomhoc-png.github.io/minirack/">
+<meta property="og:type" content="website"><meta property="og:title" content="MiniRack · Comparador de hardware para homelab">
+<meta property="og:description" content="Dinos qué quieres montar y te marcamos los mini PC, NAS y firewalls que lo aguantan.">
+<meta property="og:url" content="https://juliogomhoc-png.github.io/minirack/"><meta property="og:locale" content="es_ES">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guia-mini-pc-proxmox.html">Guía: mini PC para Proxmox</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
+<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guias.html">Guías</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
 <main class="wrap">
   <section class="hero">
     <h1>El hardware justo para tu <span class="mono">homelab</span></h1>
@@ -32,6 +36,16 @@
   <div id="cmp"></div>
 
   <p class="note" style="margin-top:28px">Sin precios a propósito: cambian cada día y en Amazon los verás actualizados. Las especificaciones son las del fabricante; si ves un error, avísanos.</p>
+
+  <h2 style="margin-top:40px">¿Dudas? Empieza por una guía</h2>
+  <ul class="rel">
+    <li><a href="guia-mini-pc-proxmox.html">Qué mini PC comprar para Proxmox</a></li>
+    <li><a href="mejor-nas-plex-jellyfin.html">Mejor NAS para Plex y Jellyfin</a></li>
+    <li><a href="mini-pc-opnsense-pfsense.html">Mini PC para OPNsense o pfSense</a></li>
+    <li><a href="raspberry-pi-5-o-mini-pc-home-assistant.html">Raspberry Pi 5 o mini PC para Home Assistant</a></li>
+    <li><a href="synology-o-ugreen-nas.html">Synology o UGREEN: qué NAS comprar</a></li>
+    <li><a href="discos-duros-nas.html">Qué discos duros poner en tu NAS</a></li>
+  </ul>
 </main>
 <footer><div class="wrap">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. · <a href="aviso-legal.html">Aviso legal y privacidad</a> · Esta web no usa cookies propias.</div></footer>
 
@@ -87,6 +101,10 @@ $('go').onclick=()=>{
    <tr><td></td>${S.map(p=>`<td><a class="buy" style="display:block" href="${link(p)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></td>`).join('')}</tr></table>`;
   $('cmp').scrollIntoView({behavior:'smooth'});
 };
+// Enlaces desde las guías: index.html?u=plex,nas&d=2 deja el asistente ya marcado
+const q=new URLSearchParams(location.search);
+(q.get('u')||'').split(',').filter(u=>U[u]).forEach(u=>{st.usos.add(u);document.querySelector(`[data-u="${u}"]`).classList.add('on')});
+if(['1','2','4'].includes(q.get('d'))){st.discos=+q.get('d');document.querySelectorAll('[data-d]').forEach(x=>x.classList.toggle('on',x.dataset.d===q.get('d')))}
 ['cat','orden'].forEach(i=>$(i).onchange=draw);draw();
 </script>
 </body>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mejor NAS para Plex y Jellyfin en 2026: cuál transcodifica de verdad · MiniRack</title>
+<meta name="description" content="Qué NAS transcodifica 4K en Plex y Jellyfin, por qué importa Intel QuickSync, cuánta RAM hace falta y qué modelos de 2 y 4 bahías elegir.">
+<link rel="canonical" href="https://juliogomhoc-png.github.io/minirack/mejor-nas-plex-jellyfin.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Mejor NAS para Plex y Jellyfin en 2026: cuál transcodifica de verdad">
+<meta property="og:description" content="Qué NAS transcodifica 4K en Plex y Jellyfin, por qué importa Intel QuickSync, cuánta RAM hace falta y qué modelos de 2 y 4 bahías elegir."><meta property="og:url" content="https://juliogomhoc-png.github.io/minirack/mejor-nas-plex-jellyfin.html">
+<meta property="og:locale" content="es_ES"><meta property="og:site_name" content="MiniRack">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Mejor NAS para Plex y Jellyfin en 2026: cuál transcodifica de verdad", "description": "Qué NAS transcodifica 4K en Plex y Jellyfin, por qué importa Intel QuickSync, cuánta RAM hace falta y qué modelos de 2 y 4 bahías elegir.", "inLanguage": "es-ES", "dateModified": "2026-11-22", "mainEntityOfPage": "https://juliogomhoc-png.github.io/minirack/mejor-nas-plex-jellyfin.html"}</script>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">~/minirack</a><a href="index.html">Comparador</a><a href="guias.html">Guías</a><a href="aviso-legal.html">Aviso legal</a></div></nav>
+<main class="wrap"><article>
+<section class="hero"><h1>Mejor NAS para <span class="mono">Plex</span> y Jellyfin en 2026</h1>
+<p>La mayoría de NAS sirven para guardar películas. Pocos sirven para verlas en cualquier dispositivo sin tirones. Esto es lo que tienes que mirar.</p><p class="meta">Actualizado: noviembre de 2026 · Sin precios: cambian cada día, los verás al día en Amazon.</p></section>
+
+<h2>La clave: transcodificar por hardware</h2>
+<p>Cuando la tele, el móvil o el navegador no soportan el formato de una película (o vas con poca conexión fuera de casa), el servidor tiene que <strong>convertirla al vuelo</strong>. Hacerlo con la CPU es lentísimo; hacerlo con la gráfica integrada es casi gratis. En los NAS, eso significa una cosa: <strong>procesador Intel con QuickSync</strong>.</p>
+<ul>
+<li><strong>Intel N100 / N150 / N95</strong> (UGREEN, TerraMaster, muchos mini PC): decodifican H.264, HEVC y AV1. Aguantan varias conversiones de 4K a la vez.</li>
+<li><strong>Intel Celeron J4125</strong> (Synology DS224+ y DS423+): HEVC sí, AV1 no. Suficiente para la mayoría de bibliotecas.</li>
+<li><strong>ARM</strong> (NAS baratos tipo QNAP TS-233) y <strong>AMD Ryzen sin gráfica</strong>: sin transcodificación por hardware útil. Solo valen si todos tus dispositivos reproducen el archivo original.</li>
+</ul>
+<p class="note">En Plex, la transcodificación por hardware exige suscripción Plex Pass. En Jellyfin es gratis. Si no quieres pagar, Jellyfin funciona igual de bien en todos estos equipos.</p>
+
+<h2>Cuántas bahías</h2>
+<p><strong>Dos bahías</strong> con dos discos en espejo (RAID 1) es lo justo para empezar: si un disco muere, no pierdes nada. <strong>Cuatro bahías</strong> salen mejor a largo plazo: con RAID 5 aprovechas tres cuartas partes del espacio y puedes crecer sin cambiar de NAS. Los discos los explicamos en la <a href="discos-duros-nas.html">guía de discos para NAS</a>.</p>
+
+<h2>RAM y red</h2>
+<p>Para Plex o Jellyfin solos, 4–8 GB sobran. Si además quieres contenedores Docker (descargas, Immich para fotos, etc.), mejor 8 GB o más. La red de 1 GbE da para varias películas 4K a la vez; 2,5 GbE se nota sobre todo al copiar archivos grandes.</p>
+
+<h2>Los que elegiríamos</h2>
+<div class="pick"><div><strong>UGREEN NASync DXP2800 (2 bahías)</strong><p>N100, 8 GB DDR5, 2,5 GbE y dos M.2: el mejor de 2 bahías para Plex por hardware.</p></div><a class="buy" href="https://www.amazon.es/s?k=UGREEN%20NASync%20DXP2800&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+<div class="pick"><div><strong>UGREEN NASync DXP4800 Plus (4 bahías)</strong><p>Pentium Gold, hasta 64 GB y 10 GbE: NAS de Plex y servidor de VM a la vez.</p></div><a class="buy" href="https://www.amazon.es/s?k=UGREEN%20NASync%20DXP4800%20Plus&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+<div class="pick"><div><strong>TerraMaster F4-424 (4 bahías)</strong><p>Cuatro bahías con N95 y 2,5 GbE: lo más barato de 4 bahías que transcodifica.</p></div><a class="buy" href="https://www.amazon.es/s?k=TerraMaster%20F4-424&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+<div class="pick"><div><strong>Synology DS224+ (2 bahías)</strong><p>Hardware más justo, pero el sistema más fácil y pulido. Para quien no quiere complicarse.</p></div><a class="buy" href="https://www.amazon.es/s?k=Synology%20DS224%2B&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>
+
+<h2>¿Y un mini PC en vez de un NAS?</h2>
+<p>Si ya tienes los discos fuera (otro NAS, un disco USB) o tu biblioteca cabe en un SSD, un mini PC con N100 como el <a href="https://www.amazon.es/s?k=Beelink%20EQ14%20N150&tag=minirack-21" rel="sponsored nofollow noopener" target="_blank">Beelink EQ14</a> transcodifica igual de bien y además te sirve para Docker o Home Assistant. Para muchos discos, mejor un NAS.</p>
+
+<h2>Preguntas frecuentes</h2><details><summary>¿Necesito Plex Pass?</summary><p>Para que Plex use la gráfica al transcodificar, sí. Si todos tus dispositivos reproducen el archivo original (Direct Play) no hace falta. Jellyfin hace lo mismo gratis.</p></details><details><summary>¿Un Synology J4125 aguanta 4K?</summary><p>Para reproducir 4K tal cual, sí. Para convertir 4K HEVC al vuelo aguanta pocas sesiones a la vez y no decodifica AV1. Si tu biblioteca es sobre todo 4K, un N100 va más sobrado.</p></details><details><summary>¿Qué discos pongo?</summary><p>Discos CMR pensados para NAS, como WD Red Plus o Seagate IronWolf. Lo explicamos en la <a href="discos-duros-nas.html">guía de discos</a>.</p></details>
+<p class="cta"><a class="btn-cta" href="index.html?u=nas,plex&d=2">Abrir el comparador con esto marcado →</a></p>
+<h2>Sigue leyendo</h2><ul class="rel"><li><a href="guia-mini-pc-proxmox.html">Qué mini PC comprar para Proxmox</a></li><li><a href="mini-pc-opnsense-pfsense.html">Mini PC para OPNsense o pfSense</a></li><li><a href="raspberry-pi-5-o-mini-pc-home-assistant.html">Raspberry Pi 5 o mini PC para Home Assistant</a></li><li><a href="synology-o-ugreen-nas.html">Synology o UGREEN: qué NAS comprar</a></li></ul>
+</article></main>
+<footer><div class="wrap">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. · <a href="aviso-legal.html">Aviso legal y privacidad</a> · Esta web no usa cookies propias.</div></footer>
+</body>
+</html>
